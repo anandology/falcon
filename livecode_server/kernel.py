@@ -80,7 +80,9 @@ class Kernel:
             yield remaining
 
     def save_file(self, root, filename, contents):
-        Path(root, filename).write_text(contents)
+        p = Path(root, filename)
+        p.parent.mkdir(exist_ok=True, parents=True)
+        p.write_text(contents)
 
     async def start_container(self, image, command, root, env):
         docker = aiodocker.Docker()
