@@ -24,7 +24,7 @@ class TestResultParser:
             "failed": sum(1 for t in testcases if t['outcome'] == 'failed'),
             "time_taken": suite.get('time')
         }
-        if any(t['outcome'] == 'failed' for t in testcases):
+        if any(t['outcome'] in ['failed', 'error'] for t in testcases):
             outcome = "failed"
         else:
             outcome = "passed"
