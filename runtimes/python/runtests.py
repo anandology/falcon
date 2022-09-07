@@ -58,6 +58,12 @@ class TestResultParser:
         if nodes:
             d['outcome'] = "failed"
             d.update(self.process_failure(nodes[0]))
+
+        nodes = e.getElementsByTagName("error")
+        if nodes:
+            d['outcome'] = "error"
+            d.update(self.process_failure(nodes[0]))
+
         return d
 
     def get_attrs(self, e):
